@@ -20,3 +20,5 @@ jobs:
 
       - name: rpmbuild
         uses: naveenrajm7/rpmbuild@master
+        with:
+          spec_file: "SPEC/my.spec"
