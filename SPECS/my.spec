@@ -16,6 +16,8 @@ Build a mock RPM.
 %setup -q
 
 %build
+pwd
+ls -lR
 make
 
 %install
