@@ -15,10 +15,13 @@ jobs:
 
       - name: Working directory explore
         run: |
+          whoami
+          sudo -l
           pwd
           ls -lR
 
       - name: rpmbuild
+        if: 'false'
         uses: naveenrajm7/rpmbuild@master
         with:
           spec_file: "SPECS/my.spec"
