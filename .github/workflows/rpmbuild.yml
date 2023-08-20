@@ -18,11 +18,13 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: Install needed RPMs
+      - name: Install needed RPMs in RHEL container
+        if: 'false'
         run: |
           sudo yum install --setopt=tsflags=nodocs -y rpmdevtools rpmlint yum-utils
 
-      - name: Setup rpmbuild tree
+      - name: Setup rpmbuild tree in RHEL container
+        if: 'false'
         run: |
           rpmdev-setuptree
           
