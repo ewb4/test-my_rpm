@@ -6,6 +6,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+## Gleaned from https://yonatankra.com/7-github-actions-tricks-i-wish-i-knew-before-i-started/#6_Saving_Computation_Time_by_Stopping_Obsolete_Workflows
+concurrency:
+  group: rpmbuild-tests-${{ github.ref }}-1
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,9 +24,3 @@ jobs:
           sudo -l
           pwd
           ls -lR
-
-      - name: rpmbuild
-        if: 'false'
-        uses: naveenrajm7/rpmbuild@master
-        with:
-          spec_file: "SPECS/my.spec"
