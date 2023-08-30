@@ -30,9 +30,9 @@ jobs:
           
       - name: Working directory explore
         run: |
+          date
           pwd
           ls -lR
-          date
 
       - name: Run rpmbuild
         uses: EWBr0wn/rpmbuild-action@correct-distribution-input
