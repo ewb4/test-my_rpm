@@ -33,3 +33,8 @@ jobs:
           whoami
           pwd
           ls -lR
+
+      - name: Run rpmbuild
+        uses: robertdebock/rpmbuild-action@1.1.1
+        with:
+          distribution: rockylinux
