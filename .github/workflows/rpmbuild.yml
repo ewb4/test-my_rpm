@@ -30,7 +30,6 @@ jobs:
           
       - name: Working directory explore
         run: |
-          whoami
           pwd
           ls -lR
 
