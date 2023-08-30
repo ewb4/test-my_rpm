@@ -42,3 +42,4 @@ jobs:
           pwd
           ls -lR
           date
+          rpm -qpi RPMS/x86_64/*.rpm
