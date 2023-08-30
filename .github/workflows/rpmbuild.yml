@@ -36,3 +36,9 @@ jobs:
 
       - name: Run rpmbuild
         uses: EWBr0wn/rpmbuild-action@correct-distribution-input
+
+      - name: Working directory explore - after
+        run: |
+          pwd
+          ls -lR
+          date
