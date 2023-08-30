@@ -6,6 +6,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+## Gleaned from https://yonatankra.com/7-github-actions-tricks-i-wish-i-knew-before-i-started/#6_Saving_Computation_Time_by_Stopping_Obsolete_Workflows
+concurrency:
+  group: rpmbuild-tests-${{ github.ref }}-1
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,12 +18,28 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
+      - name: Install needed RPMs in RHEL container
+        if: 'false'
+        run: |
+          sudo yum install --setopt=tsflags=nodocs -y rpmdevtools rpmlint yum-utils
+
+      - name: Setup rpmbuild tree in RHEL container
+        if: 'false'
+        run: |
+          rpmdev-setuptree
+          
       - name: Working directory explore
         run: |
+          date
           pwd
           ls -lR
 
-      - name: rpmbuild
-        uses: naveenrajm7/rpmbuild@master
-        with:
-          spec_file: "SPECS/my.spec"
+      - name: Run rpmbuild
+        uses: EWBr0wn/rpmbuild-action@correct-distribution-input
+
+      - name: Working directory explore - after
+        run: |
+          pwd
+          ls -lR
+          date
+          rpm -qpi RPMS/x86_64/*.rpm
