@@ -35,4 +35,4 @@ jobs:
           ls -lR
 
       - name: Run rpmbuild
-        uses: robertdebock/rpmbuild-action@1.0.0
+        uses: robertdebock/rpmbuild-action@1.1.0
